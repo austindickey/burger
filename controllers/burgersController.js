@@ -1,21 +1,23 @@
-var express = require("express");
+var db = require("./models")
 
-var router = express.Router();
-var burger = require("../models/burger.js");
+module.exports = function (app) {
 
-// get route -> index
-router.get("/", function(req, res) {
-  res.redirect("/burgers");
-});
+  // get route -> index
+  app.get("/", function (req, res) {
+    res.redirect("/burgers")
+  });
 
-router.get("/burgers", function(req, res) {
-  //FIXME:
-});
+  app.get("/burgers", function (req, res) {
+    //FIXME:
+    db.Burger.findAll({})
+      .then(function (dbBurger) {
+        res.render(dbBurger)
+      })
+  })
 
-// post route -> back to index
+  // post route -> back to index
 
 
-// put route -> back to index
+  // put route -> back to index
 
-
-module.exports = router;
+}
