@@ -21,13 +21,17 @@ router.get("/burgers", function (req, res) {
 // post route -> back to index
 
 router.post("/burgers/create", function (req, res) {
-    burger.create(req.body.burger_name, function(data){
+    burger.create(req.body.burger_name, function(){
         res.redirect("/")
     })
 })
 
 // put route -> back to index
 
-
+router.put("/burgers/:id", function (req, res){
+    burger.update(req.params.id, function(){
+       res.sendStatus(200)
+    })
+})
 
 module.exports = router

@@ -25,7 +25,14 @@ var orm = {
             if (err) throw err
             cb(result)
         })
-    }
+    },
+    update: function(table, id, cb) {
+      var query = "UPDATE " + table + " SET devoured = true WHERE id = ?;"
+      connection.query(query, id, function(err, result) {
+          if (err) throw err
+          cb(result)
+      })
+  }
 }
 
 module.exports = orm
